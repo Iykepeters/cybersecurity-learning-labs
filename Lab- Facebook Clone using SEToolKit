@@ -1,0 +1,67 @@
+Objective
+
+In this lab, I tried to clone facebook's login page and sniff login credentials using SEToolKit.
+
+This output was generated on my listening server, as I tried the clone.
+
+[*] Cloning the website: https://login.facebook.com/login.php [*] This could take a little bit...
+The best way to use this attack is if username and password form fields are available. Regardless, 
+this captures all POSTs on a website. [*] The Social-Engineer Toolkit Credential Harvester Attack [*] 
+Credential Harvester is running on port 80 [*] Information will be displayed to you as it arrives below:
+
+
+My facebook clone was successful, but I noticed quite some clear distinctions between facebook's original login page and my cloned  page. (See the next commit for snapshots)
+
+
+## Part 2 of the lab involved sniffing login credentials of a user on my listening server.
+
+This part of my lab experiment failed, and returned Facebook's telemetry / anti-abuse data, which includes:
+
+Session IDs
+
+Device/browser fingerprints
+
+Behavioral signals
+
+Bot-detection metrics
+
+Integrity checks
+
+Facebook sends this before credentials are even processed. All thanks to facebook's robust security architecture. 
+
+
+## Below are the reasons why this attempt failed:
+
+1.Facebook is a hardened target. The real login logic is handled by dynamic JS. Credentials are processed client-side, then sent in encrypted requests my cloned page couldn't replicate this logic.
+
+2.My cloned page, wasn't unable to save cookies, which means tokens fail integrity checks and so it couldn't validate my login attempt.
+
+3.Facebook security architecture verifies Domain, TLS fingerprint, JS integrity, Request origin.
+
+And maybe finally,
+
+The SEToolKit is a legacy tool and works majorly on legacy apps, poorly protected internal portals and training labs.
+
+Disclaimer!
+
+Using SET against real services or real users without permission is illegal in most jurisdictions (including Nigeria).
+
+
+## Conclusion
+
+I think if people updated their softwares more, they'd be more swift in spotting cloned sites. This is beacuse cloned sites are mostly legacy versions.
+
+A hit, using some tools doesn't neccessarily equate to a compromise.
+
+A good software design, would consist of a robust security architecture.
+
+Facebook's mechanism of encryption of credentials should be applauded.
+
+
+## Reflective questions from a defender’s view
+
+“How does Facebook prevent this?”
+
+“What indicators would a SOC see to spot a credential theft attempt?”
+
+“How would I detect this on my own network?”
