@@ -1,0 +1,121 @@
+Enum4linux is a tool for enumerating information from Windows and Samba. Samba is an application that enables Linux and Apple clients to participate in Windows networks. It enables non-Windows clients to utilize the Server Message Block (SMB) protocol to access file and print services. Samba servers can participate in a Windows domain, both as a client and a server.
+In this lab, you will complete the following objectives:
+
+Launch enum4linux and explore its capabilities.
+Identify computers with SMB services running.
+Use enum4linux to enumerate users and network file shares.
+Use smbclient to transfer files between systems.
+
+
+
+One way to identify potential targets for SMB enumeration is to examine the open ports. In an earlier lab, you used Nmap to find and enumerate open ports on target systems. Common open ports on SMB servers are:
+
+TCP 135           RPC
+
+TCP 139           NetBIOS Session
+
+TCP 389           LDAP Server
+
+TCP 445           SMB File Service
+
+TCP 9389          Active Directory Web Services
+
+TCP/UDP 137   NetBIOS Name Service
+
+UDP 138           NetBIOS Datagram
+
+
+
+Conduct a nmap -sN scan on the 10.6.6.0/24 subnet.
+using the command: nmap -sN 10.6.6.0/24
+
+
+Any potential target computers on this subnet running SMB services would be displayed.
+
+You are to watchout for the following ports:
+
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+If both are closed, then Enum4linux is pointless.
+
+
+Use the enum4linux -U option to list the users configured on the target 172.17.0.2. Remember that enum4linux commands require root permissions to execute.
+
+(rootkali)-[/home/kali]
+enum4linux -U 172.17.0.2
+
+
+List the file shares available on 172.17.0.2 using the enum4linux -S command. Use the verbose option to see the Samba tools that are used to obtain the information.
+(rootkali)-[/home/kali]
+enum4linux -Sv 172.17.0.2
+
+
+Penetration testers may not have uncovered a known username/password combination to further their exploit. In this case, they need to do a brute-force password attack to obtain the necessary credentials. It is a benefit to know the password policies in place on the target system to structure the brute-force effort. Use the enum4linux -P command to list the password policies.
+(rootkali)-[/home/kali]
+enum4linux -P 172.17.0.2
+
+This command would give you insight into the password policy of the host system, this knowledge can guide your bruteforce attack attempt.
+
+
+Enum4linux has an option that combines the -U, -S, -G, -P, -r, -o, -n, -i options into one command. This requires using the -a argument. This option quickly performs multiple SMB enumeration operations in one scan.
+
+Use the enum4linux -a command to perform a scan on the potential Samba server target that you identified in Part 2.
+(rootkali)-[/home/kali]
+enum4linux -a 10.6.6.23
+
+This command can produce multiple screens of output, with it you can also view the number of users, local groups, and shares available on the target system.
+
+Use smbclient to transfer files between systems.
+Smbclient is a component of Samba that can store and retrieve files, similar to an FTP client. You will use smbclient to transfer a file to the target system at 172.17.0.2. This simulates exploiting a network host with malware through an SMB vulnerability.
+
+Create a text file using the cat command. Name the file badfile.txt. Enter the desired text. In this example, This is a bad file. was used. Be sure that you know the path to the file. Press CTRL-C to when finished.
+(rootã‰¿kali)-[/home/kali]: cat >> badfile.txt
+This is a bad file.
+Press CRTL-C to write the file.
+
+
+Take a look at the options available with smbclient using the command smbclient help command
+(rootã‰¿kali)-[/home/kali]
+smbclient --help
+
+Use the smbclient -L command to list the shares on the target host. This command produces a similar output to what the enum4linx command did in Part 3. When asked for a password, press enter. The double / character before the IP address and the / following it are necessary if the target is a Windows computer.
+(rootã‰¿kali)-[/home/kali]
+smbclient -L //172.17.0.2/
+Password for [WORKGROUPkali]: <Press enter>
+
+
+Connect to the tmp share using the smbclient command by specifying the share name and IP address.
+(rootã‰¿kali)-[/home/kali]
+smbclient //172.17.0.2/tmp
+Password for [WORKGROUPkali]: <Press enter>
+smb: >
+
+
+Note that the prompt changed to the smb:> prompt. Type help to see what commands are available.
+
+Enter dir to view the contents of the share.
+
+Upload the badfile.txt to the target server using the put command. The syntax for the command is:
+put local-file-name remote-file-name
+smb: > put badfile.txt badfile.txt
+Putting file badfile.txt as badfile.txt (19.5 kb/s) (average 19.5 kb/s)
+
+Verify that the file successfully uploaded using the dir command.
+smb: > dir
+
+Type quit to exit the smbclient and return to the CLI prompt.
+
+
+Reflections:
+You are conducting a penetration test of a client network. You have gained access to an internal network by social engineering the username and password of an ad hoc webserver that is not behind the firewall. You can remotely access the network from a Kali VM configured with the enum4linux tool.
+
+What steps would you follow to send a dummy malware file to hosts on the network as part of the penetration test?
+
+Conclusion:
+
+Notice that all of these could have just been avoided by ensuring that port TCP 139, and TCP port 445 were closed.
+Also, ensuring the the target windows had a strong password policy to reduce the chances of a successful bruteforce attempt.
+It just boils down to one thing, true defence in cybersecurity is in the basics. 
+
+
