@@ -1,0 +1,95 @@
+The HTTP 1.1 protocol is defined in RFCs 7230-7235.
+In the examples in this module, when we refer to an HTTP server, we basically mean a web server.
+When we refer to HTTP clients, we are talking about browsers, proxies, API clients, and other custom HTTP client programs.
+HTTP is a very simple protocol, which is both a good thing and a bad thing.
+In most cases, HTTP is categorized as a stateless protocol that does not rely on a persistent connection for communication logic.
+An HTTP transaction consists of a single request from a client to a server, followed by a single response from the server back to the client.
+HTTP is different from stateful protocols, such as FTP, SMTP, IMAP, and POP. When a protocol is stateful, sequences of related commands are treated as a single interaction.
+A server must maintain the state of its interaction with the client throughout the transmission of successive commands until the interaction is terminated.
+A sequence of transmitted and executed commands is often called a session.
+
+HTTP proxies act as both servers and clients. Proxies make requests to web servers on behalf of other clients. 
+They enable HTTP transfers across firewalls and can also provide support for caching of HTTP messages. 
+Proxies can perform other roles in complex environments, including Network Address Translation (NAT) and filtering of HTTP requests.
+
+HTTP is an application-level protocol in the TCP/IP protocol suite, and it uses TCP as the underlying transport layer protocol for transmitting messages. 
+HTTP uses a request/response model, which basically means that an HTTP client program sends an HTTP request message to a server, and then the server returns an HTTP response message
+
+HTTP Processes Steps
+The client and the server first complete the TCP three-way handshake (SYN, SYN ACK, ACK). 
+Then the client sends an HTTP GET (request), and the server replies with a TCP ACK and the contents of the page (with an HTTP 200 OK response). 
+Each of these request and response messages contains a message header and message body. 
+An HTTP message (either a request or a response) has a structure that consists of a block of lines comprising the message header, followed by a message body. 
+
+Http Methods
+
+- GET: Retrieves information from the server
+- HEAD: Basically the same as GET but returns only HTTP headers and no document body
+- POST: Sends data to the server (typically using HTML forms, API requests, and so on)
+- TRACE: Does a message loopback test along the path to the target resource
+- PUT: Uploads a representation of the specified URI
+- DELETE: Deletes the specified resource
+- OPTIONS: Returns the HTTP methods that the server supports
+- CONNECT: Converts the request connection to a transparent TCP/IP tunnel.
+The URI and the path-to-resource field: This represents the path portion of the requested URL.
+The request version-number field: This specifies the version of HTTP used by the client.
+The user agent: In this example, Chrome was used to access the website.
+
+
+Common HTTP Status codes
+
+The HTTP status code messages can be in the following ranges:
+
+Messages in the 100 range are informational.
+Messages in the 200 range are related to successful transactions.
+Messages in the 300 range are related to HTTP redirections.
+Messages in the 400 range are related to client errors.
+Messages in the 500 range are related to server errors.
+
+HTTP URL Structure
+
+HTTP and other protocols use URLs – and you are definitely familiar with URLs because you use them every day. This section explains the elements of a URL so you can better understand how to abuse some of these parameters and elements from an offensive security perspective.
+
+Consider the URL https://theartofhacking.org:8123/dir/test;id=89?name= omar&x=true. Let’s break down this URL into its component parts:
+
+scheme: This is the portion of the URL that designates the underlying protocol to be used (for example, HTTP, FTP); it is followed by a colon and two forward slashes ( // ). In this example, the scheme is http.
+host: This is the IP address (numeric or DNS-based) for the web server being accessed; it usually follows the colon and two forward slashes. In this case, the host is theartofhacking.org.
+port: This optional portion of the URL designates the port number to which the target web server listens. (The default port number for HTTP servers is 80, but some configurations are set up to use an alternate port number.) In this case, the server is configured to use port 8123.
+path: This is the path from the “root” directory of the server to the desired resource. In this case, you can see that there is a directory called dir. (Keep in mind that, in reality, web servers may use aliasing to point to documents, gateways, and services that are not explicitly accessible from the server’s root directory.)
+path-segment-params: This is the portion of the URL that includes optional name/value pairs (that is, path segment parameters). A path segment parameter is typically preceded by a semicolon (depending on the programming language used), and it comes immediately after the path information. In this example, the path segment parameter is id=89. Path segment parameters are not commonly used. In addition, it is worth mentioning that these parameters are different from query-string parameters (often referred to as URL parameters ).
+query-string: This optional portion of the URL contains name/value pairs that represent dynamic parameters associated with the request. These parameters are commonly included in links for tracking and context-setting purposes. They may also be produced from variables in HTML forms. Typically, the query string is preceded by a question mark. Equals signs (=) separate names and values, and ampersands ( & ) mark the boundaries between name/value pairs. In this example, the query string is name=omar&x=true.
+
+A REST API (or RESTful API) is a type of application programming interface (API) that conforms to the specification of the representational state transfer (REST) architectural style and allows for interaction with web services.
+REST APIs are used to build and integrate multiple-application software. In short, if you want to interact with a web service to retrieve information or add, delete, or modify data, an API helps you communicate with such a system in order to fulfill the request. 
+REST APIs use JSON as the standard format for output and requests. SOAP is an older technology used in legacy APIs that use XML instead of JSON. Extensible Markup Language Remote Procedure Call (XML-RPC) is a protocol in legacy applications that uses XML to encode its calls and leverages HTTP as a transport mechanism.
+
+
+Web Sessions
+A web session is a sequence of HTTP request and response transactions between a web client and a server.
+These transactions include pre-authentication tasks, the authentication process, session management, access control, and session finalization.
+Web applications can create sessions to keep track of anonymous users after the very first user request.
+After an authenticated session has been established, the session ID (or token) is temporarily equivalent to the strongest authentication method used by the application, such as usernames and passwords, one-time passwords, and client-based digital certificates.
+
+In order to keep the authenticated state and track user progress, applications provide users with session IDs, or tokens. 
+A token is assigned at session creation time, and it is shared and exchanged by the user and the web application for the duration of the session. The session ID is a name/value pair.
+
+The session ID names used by the most common web application development frameworks can be easily fingerprinted. For instance, you can easily fingerprint PHPSESSID (PHP), JSESSIONID (J2EE), CFID and CFTOKEN (ColdFusion), ASP.NET_SessionId (ASP.NET), and many others. In addition, the session ID name may indicate what framework and programming languages are used by the web application.
+
+It is recommended to change the default session ID name of the web development framework to a generic name, such as id.
+
+The session ID must be long enough to prevent brute-force attacks. Sometimes developers set it to just a few bits, though it must be at least 128 bits (16 bytes).
+Including the session ID in the URL can lead to the manipulation of the ID or session fixation attacks. It is therefore important to keep the session ID out of the URL.
+
+Session management mechanisms based on cookies can make use of two types of cookies: non-persistent (or session) cookies and persistent cookies. 
+
+ If a cookie has a Max-Age or Expires attribute, it is considered a persistent cookie and is stored on a disk by the web browser until the expiration time
+
+Modern applications typically track users after authentication by using non-persistent cookies. 
+This forces the session information to be deleted from the client if the current web browser instance is closed. 
+
+This is why it is important to use nonpersistent cookies: so the session ID does not remain on the web client cache for long periods of time.
+
+Session IDs must be carefully validated and verified by an application. 
+Depending on the session management mechanism that is used, the session ID will be received in a GET or POST parameter, in the URL, or in an HTTP header using cookies.
+
+If web applications do not validate and filter out invalid session ID values, they can potentially be used to exploit other web vulnerabilities, such as SQL injection if the session IDs are stored on a relational database or persistent cross-site scripting (XSS) if the session IDs are stored and reflected back afterward by the web application.
