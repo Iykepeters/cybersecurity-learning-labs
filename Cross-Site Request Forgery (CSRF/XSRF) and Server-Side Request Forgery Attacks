@@ -1,0 +1,12 @@
+Cross-site request forgery (CSRF) is a way that attackers can leverage the trust granted to a logged-in user at one site to execute code from a malicious site.
+
+Cross-site request forgery (abbreviated CSRF or XSRF) attacks occur when unauthorized commands are transmitted from a user who is trusted by an application. 
+CSRF attacks are different from XSS attacks because they exploit the trust that an application has in a user’s browser.
+
+CSRF vulnerabilities are also referred to as one-click attacks or session riding.
+CSRF attacks typically affect applications (or websites) that rely on a user’s identity. Attackers can trick the user’s browser into sending HTTP requests to a target website.
+
+An example of a CSRF attack is a user authenticated by the application through a cookie saved in the browser unwittingly sending an HTTP request to a site that trusts the user, subsequently triggering an unwanted action.
+
+CSRF mitigations and defenses are implemented on the server side. 
+The paper located at the following link describes several techniques to prevent or mitigate CSRF vulnerabilities: https://seclab.stanford.edu/websec/csrf/csrf.pdf.
