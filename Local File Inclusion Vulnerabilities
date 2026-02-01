@@ -1,0 +1,8 @@
+A local file inclusion (LFI) vulnerability occurs when a web application allows a user to submit input into files or upload files to the server.
+Successful exploitation could allow an attacker to read and (in some cases) execute files on the victim’s system.
+Some LFI vulnerabilities can be critical if a web application is running with high privileges or as root. Such vulnerabilities can allow attackers to gain access to sensitive information and can even enable them to execute arbitrary commands in the affected system.
+
+
+Remote File Inclusion Vulnerabilities
+
+Remote file inclusion (RFI) vulnerabilities are similar to LFI vulnerabilities. However, when an attacker exploits an RFI vulnerability, instead of accessing a file on the victim, the attacker is able to execute code hosted on his or her own system (the attacking system).
