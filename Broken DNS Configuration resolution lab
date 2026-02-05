@@ -1,0 +1,155 @@
+[!] HTTPSConnectionPool(host='api.hackertarget.com', port=443): 
+Max retries exceeded with url: /hostsearch/?q=fhenixafrica.com (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f0f31c6b910>: 
+Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')). [!] Something broken? See https://github.com/lanmaster53/recon-ng/wiki/Troubleshooting#issue-reporting.
+
+
+. It means your system cannot resolve the domain name (DNS problem), so it can’t reach:
+
+👉 api.hackertarget.com
+
+Common Causes
+
+1️⃣ No Internet / Unstable Network
+
+Check first:
+
+ping google.com
+
+If this fails → your internet/DNS is down.
+
+2️⃣ Broken DNS Configuration (Very Common on Kali/Linux)
+
+Check your DNS file:
+
+cat /etc/resolv.conf
+
+If it’s empty or wrong → Recon won’t work.
+
+A healthy example:
+
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+
+✅ Quick Fix (Recommended)
+
+Edit DNS manually:
+
+By typing the command: sudo nano /etc/resolv.conf
+
+Replace content with:
+
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+
+Save → Exit.
+
+Then restart networking:
+
+sudo systemctl restart NetworkManager
+
+
+After fix, run these diagonostic commands to verify fix
+
+
+Try:
+
+nslookup api.hackertarget.com
+
+dig api.hackertarget.com
+
+
+👉 OSINT & recon tools fail more from network misconfig than from “bugs”.
+
+Real pentesters always check:
+
+✅ DNS
+✅ Routing
+✅ Proxies
+✅ VPN leaks
+
+Before blaming tools.
+
+
+ERROR MESSAGE 2
+
+ nslookup google.com
+;; communications error to 192.168.0.1#53: connection refused
+;; communications error to 192.168.0.1#53: connection refused
+;; communications error to 192.168.0.1#53: connection refused
+;; no servers could be reached
+
+
+RESOLUTION
+
+What’s Happening
+
+Your system is trying to use this as DNS:
+
+192.168.0.1
+
+
+But that device (usually your router) is refusing DNS requests.
+
+So:
+
+❌ Your router is not acting as a DNS server
+❌ Or DNS forwarding is broken
+❌ Or firewall is blocking port 53
+
+That’s why all recon tools are failing.
+
+
+✅ Immediate Fix (Do This Now)
+
+Bypass your router and use public DNS.
+
+Step 1: Edit resolv.conf
+sudo nano /etc/resolv.conf
+
+
+Delete everything inside and paste:
+
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+
+Save → Exit.
+
+
+Step 2: Lock It (Prevent Auto-Overwrite)
+
+Some systems reset this file. Run:
+
+sudo chattr +i /etc/resolv.conf
+
+
+(This makes it immutable.)
+
+⚠️ Later, if you want to edit it again:
+
+sudo chattr -i /etc/resolv.conf
+
+
+Step 3: Restart Network
+
+sudo systemctl restart NetworkManager
+
+
+Or just reboot.
+
+
+🧪 Step 4: Test
+
+After that, test:
+
+nslookup google.com
+ping google.com
+curl https://api.hackertarget.com
+
+
+You should now see:
+
+✅ DNS resolves
+✅ Internet works
+✅ Recon-ng works
+
+
