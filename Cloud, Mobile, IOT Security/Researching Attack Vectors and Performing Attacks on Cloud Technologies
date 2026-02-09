@@ -1,0 +1,103 @@
+The National Institute of Standards and Technology (NIST) authored Special Publication (SP) 800-145, 
+“The NIST Definition of Cloud Computing ”, to provide a standard set of definitions for the different aspects of cloud computing. 
+The SP 800-145 document also compares the different cloud services and deployment strategies. The advantages of using a cloud-based service include the following:
+
+Distributed storage
+Scalability
+Resource pooling
+Access from any location
+Measured service
+Automated management
+
+According to NIST, the essential characteristics of cloud computing include the following:
+
+On-demand self-service
+Broad network access
+Resource pooling
+Rapid elasticity
+Measured service
+
+Cloud deployment models include the following:
+
+Public cloud: Open for public use
+Private cloud: Used just by the client organization on premises or at a dedicated area in a cloud provider
+Community cloud: Shared between several organizations
+Hybrid cloud: Composed of two or more clouds (including on-prem services)
+
+
+Infrastructure as a service (IAAS)
+IaaS is a cloud solution in which you rent infrastructure. You purchase virtual power to execute your software as needed. 
+This is much like running a virtual server on your own equipment, except that you run a virtual server on a virtual disk. 
+IaaS is similar to a utility company model in that you pay for what you use.
+
+Platform as a service (PAAS)
+PaaS provides everything except applications. 
+Services provided by this model include all phases of the systems development life cycle (SDLC)
+and can use application programming interfaces (APIs), website portals, or gateway software.
+These solutions tend to be proprietary, which can cause problems if the customer moves away from the provider’s platform.
+
+Software as a service (SAAS)
+SaaS is designed to provide a complete packaged solution. The software is rented out to the user. 
+The service is usually provided through some type of front end or web portal. While the end user is free to use the service from anywhere, the company pays a per-use fee.
+
+In summary
+Software as a Service (SaaS) is designed to provide on-demand, ready-to-use cloud-hosted application software.
+Infrastructure as a Service (IaaS) is a cloud solution in which a company rents infrastructure, such as servers, storage, networks, and virtualization.
+Platform as a Service (PaaS) is a cloud solution providing on-demand access to a complete, ready-to-use cloud-hosted platform, including website portals.
+
+
+Many attacks against cloud technologies are possible, and the following are just some of them:
+
+Credential harvesting
+Privilege escalation
+Account takeover
+Metadata service attacks
+Attacks against misconfigured cloud assets
+Resource exhaustion and denial-of-service (DoS) attacks
+Cloud malware injection attacks
+Side-channel attacks
+Direct-to-origin attacks
+
+Credential harvesting is not a new attack type, but the methodologies used by attackers have evolved throughout the years. 
+Credential harvesting (or password harvesting) is the act of gathering and stealing valid usernames, passwords, tokens, PINs, and any other types of credentials through infrastructure breaches.
+
+Privilege escalation is the act of exploiting a bug or design flaw in a software or firmware application to gain access to resources that normally would have been protected from an application or a user.
+The following are a couple different types of privilege escalation:
+
+Vertical Privilege Escalation
+This type of privilege escalation, also called privilege elevation, occurs when a lower-privileged user accesses functions reserved for higher-privileged users (for example, a standard user accessing functions of an administrator).
+
+Horizontal Privilege Escalation
+This type of privilege escalation occurs when a normal user accesses functions or content reserved for other normal users (for example, one user reading another’s email).
+
+Account Takeover
+In an account takeover, the threat actor gains access to a user or application account and uses it to then gain access to more accounts and information.
+
+How to detect account takeover
+Login location
+Failed login attempts
+Lateral phishing emails
+Abnormal file sharing
+
+Metadata Service Attacks
+
+Traditionally, software developers used hard-coded credentials to access different services, such as databases and shared files on an FTP server. 
+To reduce the exposure of such insecure practices, cloud providers (such as Amazon Web Services [AWS]) have implemented metadata services. 
+When an application requires access to specific assets, it can query the metadata service to get a set of temporary access credentials.
+
+This temporary set of credentials can then be used to access services such as AWS Simple Cloud Storage (S3) buckets and other resources.
+
+Attacks Against Misconfigured Cloud Assets
+
+1. Identity and access management misconfigurations
+2. Federation misconfigurations
+3. Object storage
+4. Containerization technologies
+
+Resource exhaustion and DDOS attacks
+
+Cloud malware injection attacks
+
+
+
+
