@@ -1,0 +1,118 @@
+There are a few special considerations to keep in mind when trying to secure IoT implementations. Select each for more information.
+
+Fragile Environment
+Many IoT devices (including sensors and gateways) have limited compute resources. Because of this lack of resources, some security features, including encryption, may not even be supported in IoT devices.
+
+Availability Concerns
+DoS attacks against IoT systems are a major concern.
+
+Data Corruption
+IoT protocols are often susceptible to input validation vulnerabilities, as well as data corruption issues.
+
+Data Exfiltration
+IoT devices could be manipulated by an attacker and used for sensitive data exfiltration.
+
+Common IoT Vulnerabilities
+The following are some of the most common security vulnerabilities affecting IoT implementations. Select each vulnerability for more information.
+
+1.Insecure default credentials: Default credentials and insecure default configurations are often concerns with IoT devices. For instance, if you do a search in Shodan.io for IoT devices (or click on the Explore section), you will find hundreds of IoT devices with default credentials and insecure configurations exposed on the Internet.
+2.Plaintext communication and data leakages: some IoT devices do not provide support for encryption. Even if encryption is supported, many IoT devices fail to implement encrypted communications, and an attacker could easily steal sensitive information.
+3.Hardcoded Configurations: Often IoT vendors sell their products with hard-coded insecure configurations or credentials (including passwords, tokens, encryption keys, and more).
+4.Outdated firmware/hardware and use of insecure or outdated components:Many organizations continue to run outdated software and hardware in their IoT devices. In some cases, some of these devices are never updated! Think about an IoT device controlling different operations on an oil rig platform in the middle of the ocean.
+
+Data Storage System Vulnerabilities
+
+Misconfigurations in IoT on-premises and cloud-based solutions can lead to data theft.The following are some of the most common misconfigurations of IoT devices and cloud-based solutions.
+
+1. Default/blank username/password
+2. Network exposure
+3. Lack of user input sanitization:Input validation vulnerabilities in protocols such as Modbus, S7 Communication, DNP3, and Zigbee could lead to DoS and code execution.
+4. Underlying software vulnerabilities and injection vulnerabilities
+5. Error messages and debug handling
+
+Management Interface Vulnerabilities
+IoT implementations have suffered from many management interface vulnerabilities. 
+System administrators can use IPMI to enable out-of-band management of computer systems (including IoT systems) and to monitor their operation.
+For example, the Intelligent Platform Management Interface (IPMI) is a collection of compute interface specifications (often used by IoT systems) designed to offer management and monitoring capabilities independently of the host system’s CPU, firmware, and operating system. 
+For instance, you can use IPMI to manage a system that may be powered off or otherwise unresponsive by using a network connection to the hardware rather than to an operating system or login shell.
+
+Many IoT devices have supported IPMI to allow administrators to remotely connect and manage such systems.
+An IPMI subsystem includes a main controller, called a baseboard management controller (BMC), and other management controllers, called satellite controllers. 
+The satellite controllers within the same physical device connect to the BMC via the system interface called Intelligent Platform Management Bus/Bridge (IPMB). 
+Similarly, the BMC connects to satellite controllers or another BMC in other remote systems via the IPMB.
+
+The BMC, which has direct access to the system’s motherboard and other hardware, may be leveraged to compromise the system. 
+If you compromise the BMC, it will provide you with the ability to monitor, reboot, and even potentially install implants (or any other software) in the system. 
+Access to the BMC is basically the same as physical access to the underlying system.
+
+Exploiting Virtual Machines
+A VM is supposed to be a completely isolated system. One VM should not have access to resources and data from another VM unless that is strictly allowed and configured.
+
+The hypervisor is the entity that controls and manages the VMs. There are two types of hypervisors:
+
+Type 1 hypervisors (also known as native or bare-metal hypervisors) run directly on the physical (bare-metal) system. Examples of Type 1 hypervisors include VMware ESXi, Proxmox Virtual Environment, Xen, and Microsoft Hyper-V.
+Type 2, or hosted, hypervisors run on top of other operating systems. Examples of type 2 hypervisors include VirtualBox and VMware Player or Workstation.
+
+VM escape vulnerabilities: These vulnerabilities allow an attacker to “escape” the VM and obtain access to other virtual machines on the system or access to the hypervisor. 
+In Figure 7-6, an attacker finds a VM escape vulnerability in the underlying hypervisor and uses that vulnerability to access data from another VM.
+
+These virtual systems have been susceptible to many vulnerabilities, including the following:
+
+Hypervisor vulnerabilities such as hyperjacking: Hyperjacking is a vulnerability that could allow an attacker to control the hypervisor.
+Hyperjacking attacks often require the installation of a malicious (or “fake”) hypervisor that can manage the entire virtual environment. 
+The compromised or fake hypervisor operates in a stealth mode, avoiding detection. 
+Hyperjacking attacks can be launched by injecting a rogue hypervisor beneath the original hypervisor or by directly obtaining control of the original hypervisor. 
+You can also launch a hyperjacking attack by running a rogue hypervisor on top of an existing hypervisor.
+
+VM repository vulnerabilities: Attackers can leverage these vulnerabilities to compromise many systems and applications. 
+There are many public and private VM repositories that users can leverage to deploy VMs, including different operating systems, development tools, databases, and other solutions.
+
+Vulnerabilities Related to Containerized Workloads
+Vulnerabilities in applications and in open-source software running in containers such as Docker, Rocket, and containerd are often overlooked by developers and IT staff. Attackers may take advantage of these vulnerabilities to compromise applications and data. 
+A variety of security layers apply to containerized workloads:
+The container image
+Software inside the container
+The host operating system
+Interaction between containers and the host operating system
+Security in runtime environment and orchestration platforms such as Kubernetes
+
+best practices that organizations should use to create a secure container image.
+ Develop                                  Deliver                          Deploy    
+secure coding practices                   secure repository storage       runtime scanning
+shift-left security                       IaaS                            employ CIS benchmarks                           
+build security scanning                   secure user access              enforce security policies
+
+
+
+The CIS Benchmarks for Docker and Kubernetes provide detailed guidance on how to secure Docker containers and Kubernetes deployments. 
+You can access all the CIS Benchmarks at: https://www.cisecurity.org/cis-benchmarks.
+
+A number of tools allow you to scan Docker images for vulnerabilities and assess Kubernetes deployments. 
+The following are a few examples of these tools. Select each tool for more information.
+
+Anchore’s Grype
+Grype is an open-source container vulnerability scanner that you can download from https://github.com/anchore/grype. 
+Figure 7-9 demonstrates the use of the Grype scanner to find vulnerabilities in a Docker image.
+
+Clair
+Clair is another open-source container vulnerability scanner. You can download it from https://github.com/quay/clair.
+
+Dagda
+This set of open-source static analysis tools can help detect vulnerabilities, Trojans, backdoors, and malware in Docker images and containers. 
+It uses the ClamAV antivirus engine to detect malware and vulnerabilities. You can download Dagda from https://github.com/eliasgranderubio/dagda/.
+
+kube-bench
+This open-source tool performs a security assessment of Kubernetes clusters based on the CIS Kubernetes Benchmark. 
+You can download kube-bench from https://github.com/aquasecurity/kube-bench.
+
+kube-hunter
+This open-source tool is designed to check the security posture of Kubernetes clusters. You can download kube-hunter from https://kube-hunter.aquasec.com/.
+
+Falco
+You can download this threat detection engine for Kubernetes from https://falco.org/.
+
+
+
+
+
+
