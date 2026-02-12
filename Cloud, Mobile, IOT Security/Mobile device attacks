@@ -1,0 +1,62 @@
+Attacking Mobile Devices
+
+Attackers use various techniques to compromise mobile devices, some of the most common methods are;
+
+1.Reverse Engineering: The process of analyzing the compiled mobile app to extract information about its source code could be used to understand the underlying architecture of a mobile application and potentially manipulate the mobile device.
+OWASP has different “crack-me” exercises that help you practice reverse engineering of Android and iOS applications. See https://github.com/OWASP/owasp-mstg/tree/master/Crackmes.
+
+2.Sandbox Analysis: iOS and Android apps are isolated from each other via sandbox environments.Sandboxes in mobile devices are a mandatory access control mechanism describing the resources that a mobile app can and can’t access. 
+An attacker could perform detailed analysis of the sandbox implementation in a mobile device to potentially bypass the access control mechanisms implemented by Google (Android) or Apple (iOS), as well as mobile app developers.
+
+3.Spamming: Unsolicited messages are a problem with email and with text messages and other mobile messaging applications as well.In such an attack, a user may be presented with links that could redirect to malicious sites to steal sensitive information or install malware.
+
+The following are some of the most prevalent vulnerabilities affecting mobile devices. 
+
+1.Insecure Storage: A best practice is to save as little sensitive data as possible in a mobile device’s permanent local storage. However, at least some user data must be stored on most mobile devices. 
+2.Password vulnerabilities and biometric integrations; . OWASP provides guidance on how to test iOS local authentication at https://github.com/OWASP/owasp-mstg/blob/master/Document/0x06f-Testing-Local-Authentication.md.
+3.Certificate pinning: Attackers have tried to bypass certificate pinning by jailbreaking mobile devices and using utilities such as SSL Kill Switch 2 (see https://github.com/nabla-c0d3/ssl-kill-switch2) or Burp Suite Mobile Assistant app or by using binary patching and replacing the digital certificate.
+4.Using known vulnerable components
+5.Execution of activities using root and over-reach of permissions
+6.Business logic vulnerabilities
+
+ let’s look at some of the tools most commonly used to perform security research and test the security posture of mobile devices. see cisA secure IoT platform should provide the complete end-to-end infrastructure to build an IoT solution, including the software, management, and security to effectively collect, transform, transport, and deliver data to provide business value. This is, of course, easier said than done.A secure IoT platform should provide the complete end-to-end infrastructure to build an IoT solution, including the software, management, and security to effectively collect, transform, transport, and deliver data to provide business value. This is, of course, easier said than done.
+1.Burp suite
+2.Drozer
+3.Needle
+4.Mobile security framework
+5.Postman
+6.Ettercap
+7.Frida
+8.Objection
+9.Android SDK tools
+10.Apkx
+11.Apk Studio
+
+
+Attacking Internet of Things (IoT) Devices
+A secure IoT platform should provide the complete end-to-end infrastructure to build an IoT solution, including the software, management, and security to effectively collect, transform, transport, and deliver data to provide business value. This is, of course, easier said than done.
+
+Some of the most common network protocols for IoT implementations include the following:
+Wi-Fi
+Bluetooth and Bluetooth Low Energy (BLE)
+Zigbee
+Z-Wave
+LoraWAN
+Insteon
+Modbus
+Siemens S7comm (S7 Communication)
+
+For instance, Bluetooth Low Energy (BLE) is used by IoT home devices, medical, industrial, and government equipment.
+
+BLE involves a three-phase process to establish a connection:
+
+Phase 1. Pairing feature exchange
+
+Phase 2. Short-term key generation
+
+Phase 3. Transport-specific key distribution
+
+TIP Tools such as GATTacker (https://github.com/securing/gattacker) can be used to perform on-path attacks in BLE implementations.
+BtleJuice (https://github.com/DigitalSecurity/BtleJuice) is a framework for performing interception and manipulation of BLE traffic.
+
+
