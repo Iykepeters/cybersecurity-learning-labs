@@ -1,0 +1,85 @@
+One of the most important aspects to keep in mind when writing a report is who your report audience is. 
+If you write a report that only a highly technical audience (technical staff) can understand and deliver it to an audience that is not very technical,
+the report will not show its value, and your hard work will go unnoticed.
+
+A clearly written executive summary is important because it breaks down the technical findings into summary explanations and provides enough information that all technical levels can understand 
+the results and see value in the deliverable.Of course, you still need to cover all the technical details in other sections of the report. 
+You can see that it is important to consider not only who you are delivering the report to but also who they will be passing it along to. 
+You may end up presenting your final report to the executive or senior management level (the C-suite ).
+Typically, they will turn over the findings of the report to other teams, such as IT, information security, developers, or even third-party stakeholders to address the issues found. 
+The technical sections of the report must provide enough information for those teams to be able to take action.
+
+NOTE C-suite refers to upper or executive-level managers within a company. Common c-suite executives include the chief executive officer (CEO), 
+chief financial officer (CFO), chief operating officer (COO), chief information officer (CIO), and chief security officer (CSO).
+
+Report Contents
+
+Take some time to look at the excellent examples of penetration testing reports available at https://github.com/The-Art-of-Hacking/art-of-hacking/tree/master/pen_testing_reports.
+
+A penetration testing report typically contains the following sections (which are not listed in a particular order). Select each for more detail.
+
+Executive Summary
+A brief high-level summary describes the penetration test scope and major findings.
+
+Scope Details
+It is important to include a detailed definition of the scope of the network and systems tested as part of the engagement 
+to distinguish between in-scope and out-of-scope systems or segments and identify critical systems that are in or out of scope 
+and explain why they are included in the test as targets.
+
+Methodology
+A report should provide details on the methodologies used to complete the testing (for example, port scanning, Nmap). 
+You should also include details about the attack narrative. For example, if the environment did not have active services, explain what testing was performed to verify restricted access. 
+Document any issues encountered during testing (for example, interference encountered as a result of active protection systems blocking traffic)
+
+Findings
+A report should document technical details about whether or how the system under testing and related components may be exploited based on each vulnerability found.
+It is a good idea to use an industry-accepted risk ratings for each vulnerability, such as the Common Vulnerability Scoring System (CVSS).
+CVSS has been adopted by many tools, vendors, and organizations. Using an industry standard such as CVSS will increase the value of your report to your client.
+CVSS calculates the score of the seriousness of a threat, the scores are rated 0 - 10, with 10 being the most severe
+                                                
+Remediation
+You should provide clear guidance on how to mitigate and remediate each vulnerability. 
+This information will be very useful for the IT technical staff, software developers, and security analysts who are trying to protect the organization (often referred to as the “blue team”).
+
+Conclusion
+The report must have a good summary of all the findings and recommendations.
+
+Appendix
+It is important to document any references and include a glossary of terms that the audience of the report may not be familiar with.
+
+CVSS uses 3 metric groups in determining scores
+Base metric group: Includes exploitability metrics (for example, attack vector, attack complexity, privileges required, user interaction) and impact metrics (for example, confidentiality impact, integrity impact, availability impact).
+Temporal metric group: Includes exploit code maturity, remediation level, and report confidence.
+Environmental metric group: Includes modified base metrics, confidentiality, integrity, and availability requirements. 
+
+The Open Web Application Security Project (OWASP) publishes the Risk Rating Methodology to help with estimating the risk of a vulnerability as it pertains to a business. 
+It is part of the OWASP Testing Guide, at https://owasp.org/www-project-web-security-testing-guide.
+                                                                                                                                                            
+Storage Time for Report and Secure Distribution
+                                                                                                                                                              
+As a rule of thumb, you should always consider report contents as highly classified and distribute them on a need-to-know basis only. The classification of report contents also determines the method of delivery.     
+There are two ways to distribute a report: as a hard copy or electronically.
+
+The following are some examples of how to control the distribution of reports:
+
+Produce only a limited number of copies.
+Define the distribution list in the scope of work.
+Label each copy with a specific ID or number that is tied to the person it is distributed to.
+Label each copy with the name of the person it is distributed to.
+Keep a log of each hard copy, including who it was distributed to and the date it was distributed. Table 9-2 shows an example of such a log.
+Ensure that each copy is physically and formally delivered to the designated recipient.
+If transferring a report over a network, ensure that the document is encrypted and the method of transport is encrypted.
+Ensure that the handling and distribution of an electronic copy of a report are even more restrictive than for a hard copy:
+- Control distribution on a secure server that is owned by the department that initially requested the penetration test.
+- Provide only one copy directly to the client or requesting party.
+- Once the report is delivered to the requesting party, use a documented, secure method of deleting all collected information and any copy of the report from your machine.   
+                                                                                                                                                            
+ Note Taking
+The most accurate and comprehensive way to compile a report is to start collecting and organizing the results while you are still testing. 
+In other words, you need to understand the process of ongoing documentation during test
+As you come across findings that need to be documented, take screenshots of the tools used, the steps, and the output. 
+This will help you piece together exactly the scenario that triggered the finding and illustrate it for the end user.   
+                                                                                                                                                              
+You should include these screenshots as part of the report because including visual proof is the best way for your audience to gain a full picture of and understand the findings. 
+Sometimes it may even be necessary to create a video. In summary, taking screenshots, videos, and lots of notes will help you create a deliverable report.
+
