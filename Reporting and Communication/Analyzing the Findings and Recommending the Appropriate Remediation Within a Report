@@ -1,0 +1,93 @@
+During a penetration testing engagement, you should analyze the findings and recommend the appropriate remediation within your report, 
+including technical, administrative, operational, and physical controls.
+
+Technical Controls
+Technical controls make use of technology to reduce vulnerabilities. 
+The following are examples of technical controls that can be recommended as mitigations and remediation of the vulnerabilities found during a pen test. 
+Select each technical control for more information.
+
+System hardening
+System hardening involves applying security best practices, patches, and other configurations to remediate or mitigate the vulnerabilities found in systems and applications. 
+The system hardening process includes closing unnecessary open ports and services, removing unnecessary software, and disabling unused ports.
+
+User input sanitization and  query parameterization
+SQL injection is best prevented through the use of parameterized queries. You also learned about several other input validation vulnerabilities. 
+The use of input validation (sanitizing user input) best practices is recommended to mitigate and prevent vulnerabilities such as cross-site scripting, 
+cross-site request forgery, SQL injection, command injection, XML external entities, and other vulnerabilities 
+
+Multifactor authentication
+Multifactor authentication (MFA) is authentication that requires two or more factors. Multilayer authentication requires that two or more of the same type of factors be presented.
+In response to password insecurity, many organizations have deployed multifactor authentication options to their users. 
+With multifactor authentication, accounts are protected by something you know (password) and something you have (one-time verification code provided to you). 
+
+Password encryption
+You should always encrypt passwords, tokens, API credentials, and similar authentication data.
+
+Process level remediation
+It is important to protect operating system (for example, Linux, Windows, iOS, Android) processes and make sure an attacker has not created or manipulated any processes in the underlying system.
+
+Patch management
+Patch management is the process of distributing, installing, and applying software updates. 
+A patch management policy lists guidelines for proper management of vulnerabilities and includes phases such as testing, deploying, 
+and documenting the security patches applied to your organization.
+
+Key rotation
+Changing encryption keys, and generating new ones at regular intervals to reduce the attack surface
+
+Certificate management
+It is important to enroll, generate, manage, and revoke digital certificates in a secure manner.
+
+Secrets management solution
+You can take advantage of a number of tools and techniques to manage authentication credentials (secrets). 
+
+Network segmentation
+Segmenting a network may involve using a combination of technologies such as firewalls, VLANs, access control lists in routers, and other techniques.
+
+
+Administrative Controls
+Administrative controls are policies, rules, or training that are designed and implemented to reduce risk and improve safety. 
+The following are examples of administrative controls that may be recommended in your penetration testing report. Select each administrative control for more information.
+
+
+Role based access control
+This type of control bases access permissions on the specific role or function. Administrators grant access rights and permissions to roles. Each user is then associated with a role
+
+Software development lifecycle
+The software development life cycle (SDLC) provides a structured and standardized process for all phases of any system development effort. 
+
+Minimum password requirements
+
+Policies and procedures
+
+
+Operational controls
+Operational controls focus on day-to-day operations and strategies. 
+They are implemented by people instead of machines and ensure that management policies are followed during intermediate-level operations.
+
+Job controls
+Allowing employees to rotate from one team to another or from one role to a different one allows individuals to learn new skills and get more exposure to other security technologies and practices.
+
+Time of day restrictions
+You might want to restrict access to users based on the time of the day. For example, you may only allow certain users to access specific systems during working hours.
+
+Mandatory vacations
+Depending on your local labor laws, you may be able to mandate that your employees take vacations during specific times (for example, mandatory holiday shutdown periods).
+
+User training
+
+
+Physical controls
+Physical controls use security measures to prevent or deter unauthorized access to sensitive locations or material. 
+
+Access control vestibules
+An access control vestibule (formerly known as a mantrap) is a space with typically two sets of interlocking doors, where one door must close before the second door opens.
+
+Biometric controls
+
+Video surveillance
+
+
+
+
+
+
