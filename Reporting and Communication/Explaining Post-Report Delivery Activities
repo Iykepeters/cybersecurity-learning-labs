@@ -1,0 +1,34 @@
+This section outlines several important activities that you must complete after delivering a penetration testing report to a client.
+
+Post-Engagement Cleanup
+
+Throughout your testing phases, you have likely used many different tools and techniques to gather information, discover vulnerabilities, and perhaps exploit the systems under test. 
+These tools can and most likely will cause residual effects on the systems you have been testing.
+
+If you tested an application that uses a database, it is advisable to restore the database to the default setting or previous state.
+That is why it is suggested to test using staging environments whenever it is possible.
+
+Many tools used during testing can leave behind residual files or 
+data that you need to be sure to clean from the target systems after the testing phases of a penetration testing engagement are complete
+
+It is also very important to have the client or system owner validate that your cleanup efforts are sufficient
+
+Here are other things you might need to clean up once a test is completed
+
+1. Tester-tested credentials: Remove any user accounts that you created to maintain persistent access or for any other post-exploitation activity.
+2. Shells:  Remove shells spawned on exploited systems.
+3. Tools: Remove any tools installed or run from the systems under test.
+
+
+Additional Post-Report Delivery Activities
+
+You should have written documentation of your client’s acceptance of your report and related deliverables.
+It is important to analyze and present any lessons learned during the penetration testing engagement.
+Your client may ask you to retest different applications or systems after you provide the report. You should follow up and take care of any action items in an agreed appropriate time frame.
+You should provide clear acknowledgement proving that the assessment was performed and reporting your findings.
+You need to destroy any client sensitive data as agreed in the pre-engagement activities.
+
+
+
+
+
