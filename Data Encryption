@@ -1,6 +1,14 @@
 Data Encryption is the process of concealing or hiding
 data from unauthorized users.
 
+Steps to encrypt data using EFS
+
+1. select the folder to encrypted
+2. right click on properties
+3. click advanced 
+4. select encrypt file contents
+4. the encrypted file turns to green 
+
 
 
 
