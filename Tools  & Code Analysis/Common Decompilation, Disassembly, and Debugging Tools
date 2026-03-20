@@ -1,0 +1,85 @@
+Now let's cover some of the most popular decompilation, disassembly, and debugging tools in the industry.
+
+The GNU Project Debugger (GDB)
+Windows Debugger
+OllyDbg
+edb Debugger
+Ghidra
+Interactive Disassembler (IDA)
+Objdump
+
+
+The GNU Project Debugger
+
+The GNU Project Debugger (GDB) is one of the most popular debuggers among software developers and security professionals.
+
+Traditionally, GDB has mainly been used to debug programs written in C and C++; however, several other programming languages – such as Go, Objective-C, and OpenCL C – are also supported.
+
+NOTE For a complete list of supported programming languages, go to https://www.gnu.org/software/gdb.
+
+The run command is used to run an application inside GDB. The program executes and asks you to enter some text. 
+In this example, a large number of A characters are entered, and the program exits. 
+When the continue GDB command is executed, the text “Program terminated with signal SIGSEGV, Segmentation fault” is displayed. 
+This indicates a potential buffer overflow (which is the case in Example 10-43).
+
+Example 10-43 - Using GDB to Debug a Vulnerable Application
+
+NOTE The source code for the vulnerable application in Example 10-43 is available at https://github.com/The-Art-of-Hacking/art-of-hacking/tree/master/buffer_overflow_example.
+
+gdb vuln_program
+GNU gdb (Debian 7.12-6+b1) 7.12.0.20161007-git
+<output omitted for brevity>
+Reading symbols from vuln...(no debugging symbols found)...done.
+(gdb) run
+
+The website https://www.cprogramming.com/gdb.html includes additional examples of how to use GDB for debugging applications.
+
+Windows Debugger
+
+You can use the Windows Debugger (WinDbg) to debug kernel and user mode code. You can also use it to analyze crash dumps and to analyze the CPU registers as code executes. You can get debugging tools from Microsoft via the following methods:
+
+By downloading and installing the Windows Driver Kit (WDK)
+As a standalone tool set
+By downloading the Windows Software Development Kit (SDK)
+By downloading Microsoft Visual Studio
+
+Refer to the “Getting Started with Windows Debugging Microsoft” whitepaper to learn how to use WinDbg and related tools; 
+see https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/getting-started-with-windows-debugging. 
+You can obtain additional information about Windows debugging and symbols from https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/symbols.
+
+OllyDbg
+
+OllyDbg is a debugger created to analyze Windows 32-bit applications. It is included in Kali Linux and other penetration testing distributions; 
+it can also be downloaded from https://www.ollydbg.de.
+
+edb Debugger
+
+The edb debugger (often called Evan’s debugger) is a cross-platform debugger that supports AArch32, x86, and x86-64 architectures. 
+It comes by default with Kali Linux, and it can be downloaded from https://github.com/eteran/edb-debugger.
+
+
+Your role as a junior penetration tester does not require you to be an expert on registers, instruction pointers, or assembly language. However,
+if you want to get a better understanding of how registers work, refer to the Art of Hacking GitHub repository, 
+at https://github.com/The-Art-of-Hacking/art-of-hacking/blob/master/buffer_overflow_example/registers.md.
+
+
+Ghidra
+
+Ghidra is a powerful and free tool popular among security researchers for reverse engineering and binary analysis. 
+Developed by the NSA, Ghidra provides comprehensive capabilities for dissecting and understanding complex software, including malware analysis and vulnerability research. 
+Ghidra's extensive scripting capabilities (with Java and Python-based APIs) allow users to create custom analysis scripts. You can download Ghidra from https://www.ghidra-sre.org/.
+
+Interactive Disassembler (IDA)
+
+Interactive Disassembler (IDA) is one of the most popular disassemblers, debuggers, and decompilers on the market. 
+IDA is a commercial product of Hex-Rays, and it can be purchased from https://www.hex-rays.com/products/ida/index.shtml.
+
+
+Objdump
+
+Objdump is a Linux program that can be used to display information about one or more object files. You can use Objdump to do quick checks and disassembly of binaries,
+The Art of Hacking GitHub repository includes a list of numerous tools that can be used for reverse engineering: 
+https://github.com/The-Art-of-Hacking/art-of-hacking/tree/master/reverse_engineering.
+
+
+
