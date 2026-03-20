@@ -1,0 +1,14 @@
+steganography is the act of hiding information in images, videos, and other files. 
+You also learned about tools such as steghide. The following are a few additional tools that can be used to perform steganography:
+
+OpenStego: You can download this steganography tool from https://www.openstego.com.
+
+snow: This is a text-based steganography tool that can be downloaded from https://github.com/mattkwan-zz/snow.
+
+Coagula: This program, which can be used to make sound from an image, can be downloaded from https://www.abc.se/~re/Coagula/Coagula.html.
+
+Sonic Visualiser: This tool can be used to analyze embedded information in music or audio recordings. It can be downloaded from https://www.sonicvisualiser.org.
+
+TinEye: This is a reverse image search website at https://tineye.com.
+
+metagoofil: This tool can be used to extract metadata information from documents and images. You can download metagoofil from https://github.com/laramies/metagoofil.
