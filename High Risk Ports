@@ -1,0 +1,20 @@
+MS RPC TCP, UDP Port 135
+NetBIOS/IP TCP, UDP Port 137-139
+SMB/IP TCP Port 445
+Trivial File Transfer Protocol (TFTP) UDP Port 69
+System log UDP Port 514
+Simple Network Management Protocol (SNMP) UDP Port 161-162
+Internet Relay Chat (IRC) TCP Port 6660-6669
+
+
+High-Risk Ports to Block (Inbound and Outbound)
+
+SMB / Windows File Sharing (445, 137-139): Frequently targeted by ransomware (e.g., WannaCry).
+RDP - Remote Desktop (3389): Primary target for brute-force attacks and unauthorized access.
+FTP - File Transfer Protocol (20, 21): Insecure, unencrypted transfer protocol.
+Telnet (23): Unencrypted remote management protocol.
+SSH (22): Only allow if necessary and secure with key-based authentication.
+SMTP (25): Often used for sending spam; recommend using secure alternatives (587 or 465).
+SQL/Database Ports (1433, 1434, 3306, 5432, 6379, 27017): Should never be directly exposed to the internet.
+DNS (53): Only allow internal DNS servers to make outbound queries, block external traffic.
+SNMP (161-162): Used for management, often vulnerable
